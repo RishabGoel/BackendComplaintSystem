@@ -14,9 +14,11 @@ class Authentication extends CI_Controller {
 		//echo("dasdsa");
 		$this->load->model('auth');
 		//echo("dasdsasadadsasda");
-		$this->auth->create_session($username,$password);
+		$db_resp=$this->auth->create_session($username,$password);
+		
 		$this->load->model('ComplaintModel');
-		$this->ComplaintModel->getComplaints($username,$password);	
+		$temp=$this->ComplaintModel->getComplaints($userId);	
+
 	}
 
 	public function logout($username="",$password="")
