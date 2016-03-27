@@ -23,9 +23,10 @@ class Test extends CI_Controller {
 	{
 		$this->load->view('test');
 	}
-	public function ind(b="dfsfds")
+	public function ind($b="dfsfds")
 	{
-		$this->load->view('test');
-		echo(b);
-	}
+		
+		echo($b);	
+		echo($data);
+	}	
 }
