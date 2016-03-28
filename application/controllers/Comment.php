@@ -7,15 +7,16 @@ class Comment extends CI_Controller {
 	
 	public function getComments($complaintId){
 		$this->load->model('CommentModel');
-		$data['records'] = $this->CommentModel->getComments($complaintId);
-		print_r($data['records']);
+		$response['status']="1"
+		$response['data'] = $this->CommentModel->getComments($complaintId);
+		echo json_encode($response);
 	}
 
-	public function addComment($userId, $complaintId, $description){
-		$this->load->model('CommentModel');echo $userId;
-		$temp = $this->CommentModel->addComment($userId, $complaintId, $description);
-		
-		echo $temp;
+	public function addComment($complaintId, $description){
+		$this->load->model('CommentModel');
+		$temp = $this->CommentModel->addComment($_POST['user_id'], $complaintId, $description);
+		$response['status']=$temp;
+		echo json_encode($response);
 	}
 
 	public function editComment($commentId, $description){

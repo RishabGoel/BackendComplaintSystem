@@ -11,11 +11,10 @@ class Auth extends CI_Model {
 
 	public function create_session($username="",$password="")
 	{
-		echo("reached");
-		$sql_querry = "Select id from user where username='".$username."' and password='".$password."';";
-		echo($sql_querry);
-		$result = $this->db->query($sql_querry)->result_array();
-		//echo($result); 
-		print_r($result);
+		
+		$sql_querry = "Select * from user where username='".$username."' and password='".$password."';";
+		
+		$result = $this->db->query($sql_querry)->row_array();
+		return $result;
 	}
 }

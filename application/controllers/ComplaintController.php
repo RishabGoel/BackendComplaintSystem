@@ -10,9 +10,10 @@ class ComplaintController extends CI_Controller {
         $this->load->model('complaintmodel');
    }	
 
-	public function addComplaint($userId, $complaintId, $description){
-		$db_resp = $this->complaintmodel->addComplaint($userId, $complaintId, $description);
+	public function addComplaint($userId, $location, $description){
+		$db_resp = $this->complaintmodel->addComplaint($userId, $location, $description);
 		$response = array();
+		$response['data']=$this->complaintmodel->showComplaint($complaintId);
 		$response['status'] = $db_resp;
 		echo json_encode($response);
 	}
@@ -51,6 +52,7 @@ class ComplaintController extends CI_Controller {
 	public function ressolveComplaint($complaintId){
 		$temp = $this->complaintmodel->ressolveComplaint($complaintId);
 		$response = array();
+		
 		$response['status'] = $temp;
 		echo json_encode($response);
 	}
